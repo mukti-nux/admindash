@@ -1,5 +1,5 @@
--- Create Product Table
-CREATE TABLE product (
+-- Create Products Table
+CREATE TABLE products (
     id TEXT PRIMARY KEY,
     title TEXT NOT NULL,
     description TEXT,
@@ -15,10 +15,10 @@ CREATE TABLE product (
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Create Review Table
-CREATE TABLE review (
+-- Create Reviews Table
+CREATE TABLE reviews (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    product_id TEXT REFERENCES product(id) ON DELETE CASCADE,
+    product_id TEXT REFERENCES products(id) ON DELETE CASCADE,
     user_name TEXT NOT NULL,
     rating FLOAT8,
     comment TEXT,
@@ -28,9 +28,9 @@ CREATE TABLE review (
 );
 
 -- Enable RLS (Row Level Security) - Optional but recommended
-ALTER TABLE product ENABLE ROW LEVEL SECURITY;
-ALTER TABLE review ENABLE ROW LEVEL SECURITY;
+ALTER TABLE products ENABLE ROW LEVEL SECURITY;
+ALTER TABLE reviews ENABLE ROW LEVEL SECURITY;
 
 -- Create basic policies (Allow public read for now, adjust as needed)
-CREATE POLICY "Allow public read for products" ON product FOR SELECT USING (true);
-CREATE POLICY "Allow public read for reviews" ON review FOR SELECT USING (true);
+CREATE POLICY "Allow public read for products" ON products FOR SELECT USING (true);
+CREATE POLICY "Allow public read for reviews" ON reviews FOR SELECT USING (true);

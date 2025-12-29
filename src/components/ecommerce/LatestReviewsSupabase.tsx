@@ -50,7 +50,7 @@ export default function LatestReviewsSupabase() {
                                     </Badge>
                                 </div>
                                 <p className="text-xs text-gray-500 dark:text-gray-400 mb-1 italic">
-                                    on {review.product?.title || "Unknown Product"}
+                                    on {review.products?.title || "Unknown Product"}
                                 </p>
                                 <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
                                     "{review.comment}"

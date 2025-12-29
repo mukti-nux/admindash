@@ -9,7 +9,7 @@ export interface Review {
     date: string;
     avatar: string;
     created_at?: string;
-    product?: {
+    products?: {
         title: string;
     };
 }
@@ -17,8 +17,8 @@ export interface Review {
 export const reviewService = {
     async getAll() {
         const { data, error } = await supabase
-            .from('review')
-            .select('*, product(title)')
+            .from('reviews')
+            .select('*, products(title)')
             .order('created_at', { ascending: false });
         if (error) throw error;
         return data as Review[];
@@ -26,7 +26,7 @@ export const reviewService = {
 
     async delete(id: string) {
         const { error } = await supabase
-            .from('review')
+            .from('reviews')
             .delete()
             .eq('id', id);
         if (error) throw error;
@@ -34,7 +34,7 @@ export const reviewService = {
 
     async getCount() {
         const { count, error } = await supabase
-            .from('review')
+            .from('reviews')
             .select('*', { count: 'exact', head: true });
         if (error) throw error;
         return count || 0;
@@ -42,7 +42,7 @@ export const reviewService = {
 
     async getAverageRating() {
         const { data, error } = await supabase
-            .from('review')
+            .from('reviews')
             .select('rating');
         if (error) throw error;
         if (data.length === 0) return 0;

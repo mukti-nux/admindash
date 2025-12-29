@@ -19,7 +19,7 @@ export interface Product {
 export const productService = {
     async getAll() {
         const { data, error } = await supabase
-            .from('product')
+            .from('products')
             .select('*')
             .order('created_at', { ascending: false });
         if (error) throw error;
@@ -28,7 +28,7 @@ export const productService = {
 
     async getById(id: string) {
         const { data, error } = await supabase
-            .from('product')
+            .from('products')
             .select('*')
             .eq('id', id)
             .single();
@@ -38,7 +38,7 @@ export const productService = {
 
     async create(product: Omit<Product, 'created_at'>) {
         const { data, error } = await supabase
-            .from('product')
+            .from('products')
             .insert([product])
             .select();
         if (error) throw error;
@@ -47,7 +47,7 @@ export const productService = {
 
     async update(id: string, product: Partial<Product>) {
         const { data, error } = await supabase
-            .from('product')
+            .from('products')
             .update(product)
             .eq('id', id)
             .select();
@@ -57,7 +57,7 @@ export const productService = {
 
     async delete(id: string) {
         const { error } = await supabase
-            .from('product')
+            .from('products')
             .delete()
             .eq('id', id);
         if (error) throw error;
@@ -65,7 +65,7 @@ export const productService = {
 
     async getCount() {
         const { count, error } = await supabase
-            .from('product')
+            .from('products')
             .select('*', { count: 'exact', head: true });
         if (error) throw error;
         return count || 0;

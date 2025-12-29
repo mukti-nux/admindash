@@ -78,7 +78,7 @@ export default function ReviewList() {
                                                         <span className="font-medium text-gray-800 dark:text-white/90">{review.user_name}</span>
                                                     </div>
                                                 </TableCell>
-                                                <TableCell className="px-5 py-4 text-start text-gray-500 dark:text-gray-400">{review.product?.title || "N/A"}</TableCell>
+                                                <TableCell className="px-5 py-4 text-start text-gray-500 dark:text-gray-400">{review.products?.title || "N/A"}</TableCell>
                                                 <TableCell className="px-5 py-4 text-start">
                                                     <Badge color={review.rating >= 4 ? "success" : review.rating >= 3 ? "warning" : "error"}>
                                                         {review.rating} ⭐
